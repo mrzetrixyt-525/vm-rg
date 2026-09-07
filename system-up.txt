@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+if [ "$(id -u)" -ne 0 ]; then
+  exec sudo "$0" "$@"
+fi
+export DEBIAN_FRONTEND=noninteractive
+apt-get update -y >/dev/null 2>&1
+apt-get full-upgrade -y >/dev/null 2>&1
+printf 'System update completed successfully.\n'
